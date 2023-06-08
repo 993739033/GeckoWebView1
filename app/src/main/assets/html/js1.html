@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        function runJs(name) {
+            alert(name + " run")
+            document.getElementById("text").value += "js run " + name + "\n";
+        }
+
+        function runAndroid() {
+            if (window.webview == null) {
+                document.getElementById("text").value += "webview is null\n";
+                return;
+            } else {
+                document.getElementById("text").value += "webview vaild\n";
+                document.getElementById("text").value += "webview : " + JSON.stringify(window.webview)+"\n";
+            }
+            window.webview.raiseEvent("js", "run")
+        }
+    </script>
+</head>
+<body>
+<div>
+    <textarea id="text" aria-multiline="true" cols="5" style="width: 227px; height: 89px;">    消息队列
+</textarea>
+</div>
+<div>
+    <button onclick="runAndroid()">run android method</button>
+    <button onclick="runJs('sdf')">run js method</button>
+</div>
+
+</body>
+</html>
